@@ -1,0 +1,9 @@
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\bin\Debug\Automatic Cradle Control.exe.config
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\bin\Debug\Automatic Cradle Control.exe
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\bin\Debug\Automatic Cradle Control.pdb
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\obj\Debug\Automatic Cradle Control.csprojAssemblyReference.cache
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\obj\Debug\Automatic_Cradle_Control.Form1.resources
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\obj\Debug\Automatic_Cradle_Control.Properties.Resources.resources
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\obj\Debug\Automatic Cradle Control.csproj.GenerateResource.cache
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\obj\Debug\Automatic Cradle Control.exe
+C:\eclipsewspaces\AutoCradle\Automatic_Cradle_Win\Automatic Cradle Control\Automatic Cradle Control\obj\Debug\Automatic Cradle Control.pdb

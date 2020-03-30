@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace Automatic_Cradle_Control
 {
@@ -46,7 +47,7 @@ namespace Automatic_Cradle_Control
             {
                 string text = termTextBox.Text;
                 text = termTextBox.Text.ToUpper();
-                if (Uart.Send(serial, text)) Terminal.Items.Add(text);
+                if (Uart.Send(serial, text + AT.endl)) Terminal.Items.Add("Tx: " + text);
                 termTextBox.Text = "";
             }
         }
@@ -60,10 +61,6 @@ namespace Automatic_Cradle_Control
         {
             COMcombo.Items.Clear();
             Uart.PrintPortNames(COMcombo);
-            if (serial.IsOpen)
-            {
-                
-            }
         }
         private void connectButton_Click(object sender, EventArgs e)
         {
@@ -81,18 +78,26 @@ namespace Automatic_Cradle_Control
 
         private void serial_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            string data = serial.ReadLine();
-            if (Terminal.InvokeRequired)
+            try
             {
-                Terminal.Invoke(new Action(delegate () {
-                    Uart.receivedData = data;
-                    Terminal.Items.Add("Rx: " + data);
-                }));
+                string data = serial.ReadLine();
+                if (Terminal.InvokeRequired)
+                {
+                    Terminal.Invoke(new Action(delegate () {
+                        Uart.receivedData = data;
+                        Terminal.Items.Add("Rx: " + data);
+                    }));
+                }
+                else
+                {
+                    Terminal.Items.Add(data);
+                }
             }
-            else
+            catch (IOException)
             {
-                Terminal.Items.Add(data);
+                MessageBox.Show("Error reading from device!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+    
         }
 
         private void setSpdButton_Click(object sender, EventArgs e)
@@ -100,7 +105,7 @@ namespace Automatic_Cradle_Control
             if(speedCombo.Text != "")
             {
                 string cmd = AT.commandsArr[(byte)AT.Cmd.spd] + AT.inoutArr[(byte)AT.Inout.param] + speedCombo.Text + AT.endl;
-                if (Uart.Send(serial, cmd)) Terminal.Items.Add(cmd);
+                if (Uart.Send(serial, cmd)) Terminal.Items.Add("Tx: " + cmd);
             }
         }
 
@@ -108,8 +113,8 @@ namespace Automatic_Cradle_Control
         {
             if(angleCombo.Text != "")
             {
-                string cmd = AT.commandsArr[(byte)AT.Cmd.dur] + AT.inoutArr[(byte)AT.Inout.param] + angleCombo.Text + AT.endl;
-                if (Uart.Send(serial, cmd)) Terminal.Items.Add(cmd);
+                string cmd = AT.commandsArr[(byte)AT.Cmd.range] + AT.inoutArr[(byte)AT.Inout.param] + angleCombo.Text + AT.endl;
+                if (Uart.Send(serial, cmd)) Terminal.Items.Add("Tx:" + cmd);
             }
         }
 
@@ -118,9 +123,48 @@ namespace Automatic_Cradle_Control
             if(timeText.Text != "")
             {
                 string cmd = AT.commandsArr[(byte)AT.Cmd.tim] + AT.inoutArr[(byte)AT.Inout.param] + timeText.Text + AT.endl;
-                if (Uart.Send(serial, cmd)) Terminal.Items.Add(cmd);
-                
+                if (Uart.Send(serial, cmd)) Terminal.Items.Add("Tx: " + cmd);        
             }
         }
+        private void slpTimeButton_Click(object sender, EventArgs e)
+        {
+            if (slpTimeText.Text != "")
+            {
+                string cmd = AT.commandsArr[(byte)AT.Cmd.tim] + AT.inoutArr[(byte)AT.Inout.param] + slpTimeText.Text + AT.endl;
+                if (Uart.Send(serial, cmd)) Terminal.Items.Add("Tx: " + cmd);
+            }
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            string cmd = AT.commandsArr[(byte)AT.Cmd.rst] + AT.inoutArr[(byte)AT.Inout.noParam] + AT.endl;
+            if (Uart.Send(serial, cmd)) Terminal.Items.Add("Tx:" + cmd);
+            
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            string cmd = AT.commandsArr[(byte)AT.Cmd.stop] + AT.inoutArr[(byte)AT.Inout.noParam] + AT.endl;
+            if (Uart.Send(serial, cmd)) Terminal.Items.Add("Tx:" + cmd);
+        }
+
+        private void facRstButton_Click(object sender, EventArgs e)
+        {
+            string cmd = AT.commandsArr[(byte)AT.Cmd.fac] + AT.inoutArr[(byte)AT.Inout.noParam] + AT.endl;
+            if (Uart.Send(serial, cmd)) Terminal.Items.Add("Tx:" + cmd);
+        }
+
+        private void offTimButton_Click(object sender, EventArgs e)
+        {
+            string cmd = AT.commandsArr[(byte)AT.Cmd.tim] + AT.inoutArr[(byte)AT.Inout.param] + "-1" + AT.endl;
+            if (Uart.Send(serial,cmd)) Terminal.Items.Add("Tx:" + cmd);
+        }
+
+        private void timPauseButton_Click(object sender, EventArgs e)
+        {
+            string cmd = AT.commandsArr[(byte)AT.Cmd.tim] + AT.inoutArr[(byte)AT.Inout.noParam] + AT.endl;
+            if (Uart.Send(serial, cmd)) Terminal.Items.Add("Tx:" + cmd);
+        }
+
     }
 }

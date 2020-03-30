@@ -1,3 +1,7 @@
-Properties
 bin
 obj
+Properties
+App.config
+Form1.resx
+Program.cs
+Automatic Cradle Control.csproj

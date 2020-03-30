@@ -14,12 +14,13 @@ namespace Automatic_Cradle_Control
         {
             at=0,
             ati=1,
-            dur=2,
+            range=2,
             spd=3,
             stop=4,
             fac=5,
             rst=6,
-            tim=7
+            tim=7,
+            slptim=8
         }
 
         public enum Inout
@@ -29,18 +30,15 @@ namespace Automatic_Cradle_Control
             noParam = 2
         }
         public static readonly string[] inoutArr = new string[] { "?", "=", "" };
-        public static readonly string[] commandsArr = new string[] { "AT", "ATI", "AT+DUR", "AT+SPD", "AT+STOP", "AT+FAC", "AT+RST", "AT+TIM" };
+        public static readonly string[] commandsArr = new string[] { "AT", "ATI", "AT+RANGE", "AT+SPD", "AT+STOP", "AT+FAC", "AT+RST", "AT+TIM","AT+SLPTIM" };
         public static readonly string endl = "\r\n";
 
-        public static readonly byte minDelaySpeed = 1;
-        public static readonly byte maxDelaySpeed = 7;
-
-        public static readonly short minDuration = 500;
-        public static readonly short maxDuration = 2500;
+        public static readonly byte minValueOfparam = 1;
+        public static readonly byte maxValueOfparam = 9;
 
         public static void PrintSpeed(ComboBox combo)
         {
-            for(int i = minDelaySpeed; i <= maxDelaySpeed; i++)
+            for(int i = minValueOfparam; i <= maxValueOfparam; i++)
             {
                 combo.Items.Add(i);
             }
@@ -48,7 +46,7 @@ namespace Automatic_Cradle_Control
 
         public static void PrintDuration(ComboBox combo)
         {
-            for(int i = minDuration; i <= maxDuration; i += 100)
+            for(int i = minValueOfparam; i <= maxValueOfparam; i++)
             {
                 combo.Items.Add(i);
             }

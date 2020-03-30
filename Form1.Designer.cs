@@ -40,6 +40,9 @@
             this.portLabel = new System.Windows.Forms.Label();
             this.COMcombo = new System.Windows.Forms.ComboBox();
             this.settingsGroup = new System.Windows.Forms.GroupBox();
+            this.setTimeButton = new System.Windows.Forms.Button();
+            this.setAngleButton = new System.Windows.Forms.Button();
+            this.setSpdButton = new System.Windows.Forms.Button();
             this.speedCombo = new System.Windows.Forms.ComboBox();
             this.angleCombo = new System.Windows.Forms.ComboBox();
             this.timeText = new System.Windows.Forms.TextBox();
@@ -48,13 +51,13 @@
             this.Terminal = new System.Windows.Forms.ListBox();
             this.termTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.timPauseButton = new System.Windows.Forms.Button();
             this.offTimButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.facRstButton = new System.Windows.Forms.Button();
             this.Reset = new System.Windows.Forms.Button();
-            this.setSpdButton = new System.Windows.Forms.Button();
-            this.setAngleButton = new System.Windows.Forms.Button();
-            this.setTimeButton = new System.Windows.Forms.Button();
+            this.slpTimeText = new System.Windows.Forms.TextBox();
+            this.slpTimeButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.portGroup.SuspendLayout();
             this.settingsGroup.SuspendLayout();
@@ -168,6 +171,8 @@
             // 
             // settingsGroup
             // 
+            this.settingsGroup.Controls.Add(this.slpTimeButton);
+            this.settingsGroup.Controls.Add(this.slpTimeText);
             this.settingsGroup.Controls.Add(this.setTimeButton);
             this.settingsGroup.Controls.Add(this.setAngleButton);
             this.settingsGroup.Controls.Add(this.setSpdButton);
@@ -182,6 +187,42 @@
             this.settingsGroup.TabIndex = 5;
             this.settingsGroup.TabStop = false;
             this.settingsGroup.Text = "Parameters";
+            // 
+            // setTimeButton
+            // 
+            this.setTimeButton.BackColor = System.Drawing.Color.Gray;
+            this.setTimeButton.ForeColor = System.Drawing.Color.Yellow;
+            this.setTimeButton.Location = new System.Drawing.Point(160, 121);
+            this.setTimeButton.Name = "setTimeButton";
+            this.setTimeButton.Size = new System.Drawing.Size(74, 23);
+            this.setTimeButton.TabIndex = 13;
+            this.setTimeButton.Text = "Set Time";
+            this.setTimeButton.UseVisualStyleBackColor = false;
+            this.setTimeButton.Click += new System.EventHandler(this.setTimeButton_Click);
+            // 
+            // setAngleButton
+            // 
+            this.setAngleButton.BackColor = System.Drawing.Color.Gray;
+            this.setAngleButton.ForeColor = System.Drawing.Color.Yellow;
+            this.setAngleButton.Location = new System.Drawing.Point(160, 81);
+            this.setAngleButton.Name = "setAngleButton";
+            this.setAngleButton.Size = new System.Drawing.Size(74, 23);
+            this.setAngleButton.TabIndex = 12;
+            this.setAngleButton.Text = "Set Angle";
+            this.setAngleButton.UseVisualStyleBackColor = false;
+            this.setAngleButton.Click += new System.EventHandler(this.setAngleButton_Click);
+            // 
+            // setSpdButton
+            // 
+            this.setSpdButton.BackColor = System.Drawing.Color.Gray;
+            this.setSpdButton.ForeColor = System.Drawing.Color.Yellow;
+            this.setSpdButton.Location = new System.Drawing.Point(160, 41);
+            this.setSpdButton.Name = "setSpdButton";
+            this.setSpdButton.Size = new System.Drawing.Size(74, 23);
+            this.setSpdButton.TabIndex = 11;
+            this.setSpdButton.Text = "Set  Speed";
+            this.setSpdButton.UseVisualStyleBackColor = false;
+            this.setSpdButton.Click += new System.EventHandler(this.setSpdButton_Click);
             // 
             // speedCombo
             // 
@@ -263,6 +304,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.timPauseButton);
             this.groupBox2.Controls.Add(this.offTimButton);
             this.groupBox2.Controls.Add(this.stopButton);
             this.groupBox2.Controls.Add(this.facRstButton);
@@ -276,86 +318,89 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
             // 
+            // timPauseButton
+            // 
+            this.timPauseButton.AccessibleRole = System.Windows.Forms.AccessibleRole.WhiteSpace;
+            this.timPauseButton.BackColor = System.Drawing.Color.Gray;
+            this.timPauseButton.ForeColor = System.Drawing.Color.Yellow;
+            this.timPauseButton.Location = new System.Drawing.Point(10, 102);
+            this.timPauseButton.Name = "timPauseButton";
+            this.timPauseButton.Size = new System.Drawing.Size(100, 23);
+            this.timPauseButton.TabIndex = 4;
+            this.timPauseButton.Text = "Timer Pause";
+            this.timPauseButton.UseVisualStyleBackColor = false;
+            this.timPauseButton.Click += new System.EventHandler(this.timPauseButton_Click);
+            // 
             // offTimButton
             // 
             this.offTimButton.AccessibleRole = System.Windows.Forms.AccessibleRole.WhiteSpace;
             this.offTimButton.BackColor = System.Drawing.Color.Gray;
             this.offTimButton.ForeColor = System.Drawing.Color.Yellow;
-            this.offTimButton.Location = new System.Drawing.Point(9, 62);
+            this.offTimButton.Location = new System.Drawing.Point(10, 62);
             this.offTimButton.Name = "offTimButton";
-            this.offTimButton.Size = new System.Drawing.Size(92, 23);
+            this.offTimButton.Size = new System.Drawing.Size(100, 23);
             this.offTimButton.TabIndex = 3;
             this.offTimButton.Text = "Timer OFF";
             this.offTimButton.UseVisualStyleBackColor = false;
+            this.offTimButton.Click += new System.EventHandler(this.offTimButton_Click);
             // 
             // stopButton
             // 
             this.stopButton.BackColor = System.Drawing.Color.Gray;
             this.stopButton.ForeColor = System.Drawing.Color.Yellow;
-            this.stopButton.Location = new System.Drawing.Point(9, 22);
+            this.stopButton.Location = new System.Drawing.Point(10, 22);
             this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(92, 23);
+            this.stopButton.Size = new System.Drawing.Size(100, 23);
             this.stopButton.TabIndex = 2;
             this.stopButton.Text = "Stop";
             this.stopButton.UseVisualStyleBackColor = false;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
             // facRstButton
             // 
             this.facRstButton.BackColor = System.Drawing.Color.Gray;
             this.facRstButton.ForeColor = System.Drawing.Color.Yellow;
-            this.facRstButton.Location = new System.Drawing.Point(126, 62);
+            this.facRstButton.Location = new System.Drawing.Point(130, 62);
             this.facRstButton.Name = "facRstButton";
-            this.facRstButton.Size = new System.Drawing.Size(92, 23);
+            this.facRstButton.Size = new System.Drawing.Size(100, 23);
             this.facRstButton.TabIndex = 1;
             this.facRstButton.Text = "Factory Rst";
             this.facRstButton.UseVisualStyleBackColor = false;
+            this.facRstButton.Click += new System.EventHandler(this.facRstButton_Click);
             // 
             // Reset
             // 
             this.Reset.BackColor = System.Drawing.Color.Gray;
             this.Reset.ForeColor = System.Drawing.Color.Yellow;
-            this.Reset.Location = new System.Drawing.Point(126, 22);
+            this.Reset.Location = new System.Drawing.Point(130, 22);
             this.Reset.Name = "Reset";
-            this.Reset.Size = new System.Drawing.Size(92, 23);
+            this.Reset.Size = new System.Drawing.Size(100, 23);
             this.Reset.TabIndex = 0;
             this.Reset.Text = "Reset";
             this.Reset.UseVisualStyleBackColor = false;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
-            // setSpdButton
+            // slpTimeText
             // 
-            this.setSpdButton.BackColor = System.Drawing.Color.Gray;
-            this.setSpdButton.ForeColor = System.Drawing.Color.Yellow;
-            this.setSpdButton.Location = new System.Drawing.Point(160, 41);
-            this.setSpdButton.Name = "setSpdButton";
-            this.setSpdButton.Size = new System.Drawing.Size(74, 23);
-            this.setSpdButton.TabIndex = 11;
-            this.setSpdButton.Text = "Set  Speed";
-            this.setSpdButton.UseVisualStyleBackColor = false;
-            this.setSpdButton.Click += new System.EventHandler(this.setSpdButton_Click);
+            this.slpTimeText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.slpTimeText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.slpTimeText.ForeColor = System.Drawing.Color.Yellow;
+            this.slpTimeText.Location = new System.Drawing.Point(15, 160);
+            this.slpTimeText.Name = "slpTimeText";
+            this.slpTimeText.Size = new System.Drawing.Size(130, 22);
+            this.slpTimeText.TabIndex = 14;
             // 
-            // setAngleButton
+            // slpTimeButton
             // 
-            this.setAngleButton.BackColor = System.Drawing.Color.Gray;
-            this.setAngleButton.ForeColor = System.Drawing.Color.Yellow;
-            this.setAngleButton.Location = new System.Drawing.Point(160, 81);
-            this.setAngleButton.Name = "setAngleButton";
-            this.setAngleButton.Size = new System.Drawing.Size(74, 23);
-            this.setAngleButton.TabIndex = 12;
-            this.setAngleButton.Text = "Set Angle";
-            this.setAngleButton.UseVisualStyleBackColor = false;
-            this.setAngleButton.Click += new System.EventHandler(this.setAngleButton_Click);
-            // 
-            // setTimeButton
-            // 
-            this.setTimeButton.BackColor = System.Drawing.Color.Gray;
-            this.setTimeButton.ForeColor = System.Drawing.Color.Yellow;
-            this.setTimeButton.Location = new System.Drawing.Point(160, 121);
-            this.setTimeButton.Name = "setTimeButton";
-            this.setTimeButton.Size = new System.Drawing.Size(74, 23);
-            this.setTimeButton.TabIndex = 13;
-            this.setTimeButton.Text = "Set Time";
-            this.setTimeButton.UseVisualStyleBackColor = false;
-            this.setTimeButton.Click += new System.EventHandler(this.setTimeButton_Click);
+            this.slpTimeButton.BackColor = System.Drawing.Color.Gray;
+            this.slpTimeButton.ForeColor = System.Drawing.Color.Yellow;
+            this.slpTimeButton.Location = new System.Drawing.Point(160, 161);
+            this.slpTimeButton.Name = "slpTimeButton";
+            this.slpTimeButton.Size = new System.Drawing.Size(74, 23);
+            this.slpTimeButton.TabIndex = 15;
+            this.slpTimeButton.Text = "Set Sleep";
+            this.slpTimeButton.UseVisualStyleBackColor = false;
+            this.slpTimeButton.Click += new System.EventHandler(this.slpTimeButton_Click);
             // 
             // Form1
             // 
@@ -412,6 +457,9 @@
         private System.Windows.Forms.Button setTimeButton;
         private System.Windows.Forms.Button setAngleButton;
         private System.Windows.Forms.Button setSpdButton;
+        private System.Windows.Forms.Button timPauseButton;
+        private System.Windows.Forms.Button slpTimeButton;
+        private System.Windows.Forms.TextBox slpTimeText;
     }
 }
 

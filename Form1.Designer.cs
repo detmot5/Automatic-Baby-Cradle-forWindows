@@ -40,6 +40,9 @@
             this.portLabel = new System.Windows.Forms.Label();
             this.COMcombo = new System.Windows.Forms.ComboBox();
             this.settingsGroup = new System.Windows.Forms.GroupBox();
+            this.speedLabel = new System.Windows.Forms.Label();
+            this.slpTimeButton = new System.Windows.Forms.Button();
+            this.slpTimeText = new System.Windows.Forms.TextBox();
             this.setTimeButton = new System.Windows.Forms.Button();
             this.setAngleButton = new System.Windows.Forms.Button();
             this.setSpdButton = new System.Windows.Forms.Button();
@@ -56,13 +59,18 @@
             this.stopButton = new System.Windows.Forms.Button();
             this.facRstButton = new System.Windows.Forms.Button();
             this.Reset = new System.Windows.Forms.Button();
-            this.slpTimeText = new System.Windows.Forms.TextBox();
-            this.slpTimeButton = new System.Windows.Forms.Button();
+            this.speedValueLabel = new System.Windows.Forms.Label();
+            this.RangeLabel = new System.Windows.Forms.Label();
+            this.StopFlagLabel = new System.Windows.Forms.Label();
+            this.ValuesGroupBox = new System.Windows.Forms.GroupBox();
+            this.rangeValueLabel = new System.Windows.Forms.Label();
+            this.stopFlagStateLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.portGroup.SuspendLayout();
             this.settingsGroup.SuspendLayout();
             this.teminalGroup.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.ValuesGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // serial
@@ -171,6 +179,7 @@
             // 
             // settingsGroup
             // 
+            this.settingsGroup.Controls.Add(this.ValuesGroupBox);
             this.settingsGroup.Controls.Add(this.slpTimeButton);
             this.settingsGroup.Controls.Add(this.slpTimeText);
             this.settingsGroup.Controls.Add(this.setTimeButton);
@@ -187,6 +196,38 @@
             this.settingsGroup.TabIndex = 5;
             this.settingsGroup.TabStop = false;
             this.settingsGroup.Text = "Parameters";
+            // 
+            // speedLabel
+            // 
+            this.speedLabel.AutoSize = true;
+            this.speedLabel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold);
+            this.speedLabel.Location = new System.Drawing.Point(6, 12);
+            this.speedLabel.Name = "speedLabel";
+            this.speedLabel.Size = new System.Drawing.Size(45, 14);
+            this.speedLabel.TabIndex = 16;
+            this.speedLabel.Text = "Speed:";
+            // 
+            // slpTimeButton
+            // 
+            this.slpTimeButton.BackColor = System.Drawing.Color.Gray;
+            this.slpTimeButton.ForeColor = System.Drawing.Color.Yellow;
+            this.slpTimeButton.Location = new System.Drawing.Point(160, 161);
+            this.slpTimeButton.Name = "slpTimeButton";
+            this.slpTimeButton.Size = new System.Drawing.Size(74, 23);
+            this.slpTimeButton.TabIndex = 15;
+            this.slpTimeButton.Text = "Set Sleep";
+            this.slpTimeButton.UseVisualStyleBackColor = false;
+            this.slpTimeButton.Click += new System.EventHandler(this.slpTimeButton_Click);
+            // 
+            // slpTimeText
+            // 
+            this.slpTimeText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.slpTimeText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.slpTimeText.ForeColor = System.Drawing.Color.Yellow;
+            this.slpTimeText.Location = new System.Drawing.Point(15, 160);
+            this.slpTimeText.Name = "slpTimeText";
+            this.slpTimeText.Size = new System.Drawing.Size(130, 22);
+            this.slpTimeText.TabIndex = 14;
             // 
             // setTimeButton
             // 
@@ -380,27 +421,67 @@
             this.Reset.UseVisualStyleBackColor = false;
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
-            // slpTimeText
+            // speedValueLabel
             // 
-            this.slpTimeText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.slpTimeText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.slpTimeText.ForeColor = System.Drawing.Color.Yellow;
-            this.slpTimeText.Location = new System.Drawing.Point(15, 160);
-            this.slpTimeText.Name = "slpTimeText";
-            this.slpTimeText.Size = new System.Drawing.Size(130, 22);
-            this.slpTimeText.TabIndex = 14;
+            this.speedValueLabel.AutoSize = true;
+            this.speedValueLabel.Font = new System.Drawing.Font("Arial", 10.25F, System.Drawing.FontStyle.Bold);
+            this.speedValueLabel.ForeColor = System.Drawing.Color.Lime;
+            this.speedValueLabel.Location = new System.Drawing.Point(65, 10);
+            this.speedValueLabel.Name = "speedValueLabel";
+            this.speedValueLabel.Size = new System.Drawing.Size(0, 16);
+            this.speedValueLabel.TabIndex = 17;
             // 
-            // slpTimeButton
+            // RangeLabel
             // 
-            this.slpTimeButton.BackColor = System.Drawing.Color.Gray;
-            this.slpTimeButton.ForeColor = System.Drawing.Color.Yellow;
-            this.slpTimeButton.Location = new System.Drawing.Point(160, 161);
-            this.slpTimeButton.Name = "slpTimeButton";
-            this.slpTimeButton.Size = new System.Drawing.Size(74, 23);
-            this.slpTimeButton.TabIndex = 15;
-            this.slpTimeButton.Text = "Set Sleep";
-            this.slpTimeButton.UseVisualStyleBackColor = false;
-            this.slpTimeButton.Click += new System.EventHandler(this.slpTimeButton_Click);
+            this.RangeLabel.AutoSize = true;
+            this.RangeLabel.Location = new System.Drawing.Point(6, 40);
+            this.RangeLabel.Name = "RangeLabel";
+            this.RangeLabel.Size = new System.Drawing.Size(44, 14);
+            this.RangeLabel.TabIndex = 18;
+            this.RangeLabel.Text = "Range:";
+            // 
+            // StopFlagLabel
+            // 
+            this.StopFlagLabel.AutoSize = true;
+            this.StopFlagLabel.Location = new System.Drawing.Point(6, 68);
+            this.StopFlagLabel.Name = "StopFlagLabel";
+            this.StopFlagLabel.Size = new System.Drawing.Size(57, 14);
+            this.StopFlagLabel.TabIndex = 19;
+            this.StopFlagLabel.Text = "StopFlag:";
+            // 
+            // ValuesGroupBox
+            // 
+            this.ValuesGroupBox.Controls.Add(this.stopFlagStateLabel);
+            this.ValuesGroupBox.Controls.Add(this.StopFlagLabel);
+            this.ValuesGroupBox.Controls.Add(this.rangeValueLabel);
+            this.ValuesGroupBox.Controls.Add(this.RangeLabel);
+            this.ValuesGroupBox.Controls.Add(this.speedValueLabel);
+            this.ValuesGroupBox.Controls.Add(this.speedLabel);
+            this.ValuesGroupBox.Location = new System.Drawing.Point(15, 230);
+            this.ValuesGroupBox.Name = "ValuesGroupBox";
+            this.ValuesGroupBox.Size = new System.Drawing.Size(105, 90);
+            this.ValuesGroupBox.TabIndex = 20;
+            this.ValuesGroupBox.TabStop = false;
+            // 
+            // rangeValueLabel
+            // 
+            this.rangeValueLabel.AutoSize = true;
+            this.rangeValueLabel.Font = new System.Drawing.Font("Arial", 10.25F, System.Drawing.FontStyle.Bold);
+            this.rangeValueLabel.ForeColor = System.Drawing.Color.Lime;
+            this.rangeValueLabel.Location = new System.Drawing.Point(65, 38);
+            this.rangeValueLabel.Name = "rangeValueLabel";
+            this.rangeValueLabel.Size = new System.Drawing.Size(0, 16);
+            this.rangeValueLabel.TabIndex = 19;
+            // 
+            // stopFlagStateLabel
+            // 
+            this.stopFlagStateLabel.AutoSize = true;
+            this.stopFlagStateLabel.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold);
+            this.stopFlagStateLabel.ForeColor = System.Drawing.Color.Lime;
+            this.stopFlagStateLabel.Location = new System.Drawing.Point(65, 68);
+            this.stopFlagStateLabel.Name = "stopFlagStateLabel";
+            this.stopFlagStateLabel.Size = new System.Drawing.Size(0, 14);
+            this.stopFlagStateLabel.TabIndex = 19;
             // 
             // Form1
             // 
@@ -425,6 +506,8 @@
             this.teminalGroup.ResumeLayout(false);
             this.teminalGroup.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.ValuesGroupBox.ResumeLayout(false);
+            this.ValuesGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -460,6 +543,13 @@
         private System.Windows.Forms.Button timPauseButton;
         private System.Windows.Forms.Button slpTimeButton;
         private System.Windows.Forms.TextBox slpTimeText;
+        private System.Windows.Forms.Label speedLabel;
+        private System.Windows.Forms.Label StopFlagLabel;
+        private System.Windows.Forms.Label RangeLabel;
+        public System.Windows.Forms.GroupBox ValuesGroupBox;
+        public System.Windows.Forms.Label stopFlagStateLabel;
+        public System.Windows.Forms.Label speedValueLabel;
+        public System.Windows.Forms.Label rangeValueLabel;
     }
 }
 

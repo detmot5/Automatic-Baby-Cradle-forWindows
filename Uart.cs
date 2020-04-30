@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.IO.Ports;
 
@@ -11,10 +12,11 @@ namespace Automatic_Cradle_Control
     class Uart
     {
         public static readonly int[] baudrateArray = new int[] { 9600, 14400, 19200, 28800, 38400, 57600, 76800, 115200 };
-        public static string receivedData;
-        public static string commandToSend;
+        public SerialPort Serial = new SerialPort();
 
-   
+        public delegate void SerialPortDataReceivedCallback(string data);
+        private SerialPortDataReceivedCallback SerialPortCallback;
+
         public static void PrintPortNames(ComboBox comboBox)
         {
             comboBox.Items.AddRange(SerialPort.GetPortNames());   
@@ -28,13 +30,24 @@ namespace Automatic_Cradle_Control
             }
         }
 
-        public static bool Init(SerialPort serial, ComboBox portList, ComboBox baudrateList)
+        public bool isOpen()
+        {
+            return Serial.IsOpen;
+        }
+
+        public bool Init(string portName, int baudrate, SerialPortDataReceivedCallback callback)
         {
             try
             {
-                serial.PortName = portList.Text;
-                serial.BaudRate = int.Parse(baudrateList.Text);
-                serial.Open();
+                Serial.PortName = portName;
+                Serial.BaudRate = baudrate;
+                Serial.DataBits = 8;
+                Serial.Parity = Parity.None;
+                Serial.StopBits = StopBits.One;
+                Serial.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                SerialPortCallback = callback;
+                
+                Serial.Open();
             }
             catch (InvalidOperationException)
             {
@@ -61,11 +74,11 @@ namespace Automatic_Cradle_Control
 
         }
 
-        public static bool Send(SerialPort serialPort, string data)
+        public bool Send(string data)
         {
             try
             {
-                serialPort.WriteLine(data);
+                Serial.WriteLine(data);
             }
             catch (InvalidOperationException)
             {
@@ -76,5 +89,30 @@ namespace Automatic_Cradle_Control
             return true;
         }
 
+
+        private void DataReceivedHandler(
+                        object sender,
+                        SerialDataReceivedEventArgs e)
+        {
+            
+            try
+            {
+                string data = Serial.ReadLine();
+                if (data.Length == 0 || data == null) return;
+             
+                SerialPortCallback(data);
+                
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("Error Reading From Device!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Error Reading From Device!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
     }
 }

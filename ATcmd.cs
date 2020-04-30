@@ -54,6 +54,28 @@ namespace Automatic_Cradle_Control
 
         //---------------------
 
+        public static void ParseReceivedData(string receivedData, Label spdLabel, Label rangeLabel, Label stopFlagLabel)
+        {
+            string[] split = receivedData.Split(new Char[] {'_','='});
+            if (split[0] != "AT") return;
+            
+            switch (split[1])
+            {
+                case "SPD":
+                    spdLabel.Text = split[2];
+                    break;
+                case "RANGE":
+                    rangeLabel.Text = split[2];
+                    break;
+                case "STOP":
+                    stopFlagLabel.Text = split[2];
+                    break;
+
+                default:
+                    return;
+            }   
+        }
+
     }
 
     static class ATparam
